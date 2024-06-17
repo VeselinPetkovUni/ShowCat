@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSON Daten Darstellung</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .email-section {
+            display: none;
+        }
+        .details ul {
+            list-style-type: disc;
+            margin-left: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container my-5">
+        <div class="form-group">
+            <label for="jsonDropdown">Wählen Sie eine welche Kategorisierung Sie sehen wollen aus:</label>
+            <select class="form-control" id="jsonDropdown">
+                <option value="kategorisierung1.json">Kategorisierung durch ISB 1</option>
+                <option value="kategorisierung2.json">Kategorisierung durch ISB 2</option>
+            </select>
+        </div>
+
+        <div class="btn-group btn-group-toggle" data-toggle="buttons" id="emailButtons">
+            <label class="btn btn-primary">
+                <input type="radio" name="options" id="btn-1" autocomplete="off"> E-Mail 1
+            </label>
+            <label class="btn btn-primary">
+                <input type="radio" name="options" id="btn-2" autocomplete="off"> E-Mail 2
+            </label>
+            <label class="btn btn-primary">
+                <input type="radio" name="options" id="btn-3" autocomplete="off"> E-Mail 3
+            </label>
+            <label class="btn btn-primary">
+                <input type="radio" name="options" id="btn-4" autocomplete="off"> E-Mail 4
+            </label>
+            <label class="btn btn-primary">
+                <input type="radio" name="options" id="btn-5" autocomplete="off"> E-Mail 5
+            </label>
+        </div>
+
+        <div id="email-content" class="mt-4"></div>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            let emailsData = {};
+            let newEmailsData = {};
+            let currentData = {};
+
+            function fetchData(file) {
+                fetch(file)
+                    .then(response => response.json())
+                    .then(data => {
+                        currentData = data;
+                        renderEmailData(currentData);
+                    });
+            }
+
+            function renderEmailData(data) {
+                const emailContent = document.getElementById('email-content');
+                emailContent.innerHTML = '';
+
+                for (let email in data) {
+                    const emailSection = document.createElement('div');
+                    emailSection.classList.add('email-section');
+                    emailSection.id = email;
+
+                    const notidrop = data[email].NotiDrop;
+                    const mitre = data[email].MITRE;
+
+                    emailSection.innerHTML = `
+                        <div class="email-title"><h3>${email}</h3></div>
+                        <div class="notidrop">
+                            <h4>NotiDrop</h4>
+                            <div class="details">
+                                <p><strong>ISV_ID:</strong> ${notidrop.ISV_ID}</p>
+                                <p><strong>Kategorie:</strong> ${notidrop.category}</p>
+                                <p><strong>Vorfall:</strong> ${notidrop.incident}</p>
+                                <p><strong>Details:</strong> ${notidrop.detail}</p>
+                                <p><strong>Zusätzliche Details:</strong></p>
+                                <ul>${notidrop.additionalDetails.map(detail => `<li>${detail}</li>`).join('')}</ul>
+                                <p><strong>Attachments heruntergeladen:</strong> ${notidrop.attachment_Downloaded ? notidrop.attachment_Downloaded.join(', ') : 'Keine'}</p>
+                                <p><strong>Links geklickt:</strong> ${notidrop.link_Clicked ? notidrop.link_Clicked.join(', ') : 'Keine'}</p>
+                                <p><strong>Kritikalität:</strong> ${notidrop.criticality}</p>
+                                <p><strong>Frei Text Details:</strong> ${notidrop.freetextDetails}</p>
+                            </div>
+                        </div>
+                        <div class="mitre">
+                            <h4>MITRE</h4>
+                            <div class="details">
+                                <p><strong>Taktiken:</strong> ${mitre.tactics.join(', ')}</p>
+                                <p><strong>Techniken:</strong> ${mitre.techniques.join(', ')}</p>
+                            </div>
+                        </div>
+                    `;
+
+                    emailContent.appendChild(emailSection);
+                }
+
+                const emailSections = document.querySelectorAll('.email-section');
+                emailSections.forEach(section => section.style.display = 'none');
+            }
+
+            fetchData('kategorisierung1.json');
+
+            document.getElementById('jsonDropdown').addEventListener('change', function () {
+                fetchData(this.value);
+            });
+
+            const buttons = document.querySelectorAll('.btn-group-toggle .btn');
+            buttons.forEach((button, index) => {
+                button.addEventListener('click', () => {
+                    const emailSections = document.querySelectorAll('.email-section');
+                    emailSections.forEach(section => section.style.display = 'none');
+                    const selectedEmail = `E-Mail${index + 1}`;
+                    const emailSection = document.getElementById(selectedEmail);
+                    if (emailSection) {
+                        emailSection.style.display = 'block';
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

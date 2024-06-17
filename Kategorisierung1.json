@@ -1,0 +1,87 @@
+{
+    "E-Mail1": {
+        "NotiDrop": {
+            "ISV_ID": "Fall1",
+            "category": "Information Gathering",
+            "incident": "Social Engineering",
+            "detail": "E-Mail",
+            "additionalDetails": ["E-Mail besitzt einen Link"],
+            "attachment_Downloaded": [],
+            "link_Clicked": [],
+            "criticality": "Negligible",
+            "freetextDetails": "Der Link in der Mail wurde nicht geklickt. Risiko sehr gering"
+        },
+        "MITRE": {
+            "tactics": ["TA0043"],
+            "techniques": ["T1598", "T1598.003"]
+        }
+    },
+    "E-Mail2": {
+        "NotiDrop": {
+            "ISV_ID": "Fall2",
+            "category": "Intrusions",
+            "incident": "User Account Compromise",
+            "detail": "Intrusion via E-Mail",
+            "additionalDetails": ["E-Mail besitzt einen Link"],
+            "attachment_Downloaded": [],
+            "link_Clicked": ["clicked"],
+            "criticality": "Major",
+            "freetextDetails": "Der Computer wurde durch Eingabe Account Creds wahrscheinlich übernommen."
+        },
+        "MITRE": {
+            "tactics": ["TA0001", "TA0002"],
+            "techniques": ["T1566", "T1566.001", "T1566.002", "T1204", "T1204.001"]
+        }
+    },
+    "E-Mail3": {
+        "NotiDrop": {
+            "ISV_ID": "Fall3",
+            "category": "Malicious Code",
+            "incident": "Malware Infection",
+            "detail": "E-Mail",
+            "additionalDetails": ["E-Mail besitzt einen Anhang"],
+            "attachment_Downloaded": ["downloaded", "executed"],
+            "link_Clicked": [],
+            "criticality": "Major",
+            "freetextDetails": "Computer wurde durch Ausführen der Malware im Anhang (vermeintlich Zoom) infiziert."
+        },
+        "MITRE": {
+            "tactics": ["TA0001", "TA0002"],
+            "techniques": ["T1566", "T1566.001", "T1566.002", "T1204", "T1204.001", "T1204.002"]
+        }
+    },
+    "E-Mail4": {
+        "NotiDrop": {
+            "ISV_ID": "Fall4",
+            "category": "Information Gathering",
+            "incident": "Social Engineering",
+            "detail": "E-Mail",
+            "additionalDetails": ["E-Mail besitzt einen Anhang", "CEO-Fraud: Angreifer geben sich als Vorgesetzte aus, um Mitarbeiter zu manipulieren."],
+            "attachment_Downloaded": ["downloaded", "executed"],
+            "link_Clicked": [],
+            "criticality": "Minor",
+            "freetextDetails": "Anhang wurde von der AV Software erkannt und entfernt."
+        },
+        "MITRE": {
+            "tactics": ["TA0043"],
+            "techniques": ["T1598", "T1589.002"]
+        }
+    },
+    "E-Mail5": {
+        "NotiDrop": {
+            "ISV_ID": "Fall5",
+            "category": "Information Gathering",
+            "incident": "Social Engineering",
+            "detail": "E-Mail",
+            "additionalDetails": ["BEC-Fraud: Angreifer baut Vertrauen über E-Mail-Kommunikation auf, um manipulativ vorzugehen."],
+            "attachment_Downloaded": [],
+            "link_Clicked": [],
+            "criticality": "Major",
+            "freetextDetails": "Vertrauenswürdige Daten sind abgeflossen"
+        },
+        "MITRE": {
+            "tactics": ["TA0043"],
+            "techniques": ["T1598"]
+        }
+    }
+}

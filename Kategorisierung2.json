@@ -1,0 +1,83 @@
+{
+    "E-Mail1": {
+        "NotiDrop": {
+            "ISV_ID": "mail1.msg",
+            "category": "Intrusion Attempts",
+            "incident": "Other Intrusion Attempts",
+            "detail": "E-Mail Phishing",
+            "additionalDetails": ["E-Mail besitzt einen Link"],
+            "link_Clicked": [],
+            "criticality": "Minor",
+            "freetextDetails": "Im Folgenden der in der Mail angegebene Link auf den der Mitarbeiter klicken sollte um seine Identität zu bestätigen:\n\nhttp://bit.ly/wiChtigeWarnung"
+        },
+        "MITRE": {
+            "tactics": ["TA0001"],
+            "techniques": ["T1566", "T1566.002"]
+        }
+    },
+    "E-Mail2": {
+        "NotiDrop": {
+            "ISV_ID": "mail2.msg",
+            "category": "Intrusion Attempts",
+            "incident": "Other Intrusion Attempts",
+            "detail": "E-Mail Phishing",
+            "additionalDetails": ["E-Mail besitzt einen Link"],
+            "link_Clicked": ["clicked"],
+            "criticality": "Major",
+            "freetextDetails": "Im Folgenden der Link auf den der Mitarbeiter klicken sollte:\n\nhttp://activ-accaunt-bwi.de"
+        },
+        "MITRE": {
+            "tactics": ["TA0001"],
+            "techniques": ["T1566", "T1566.002"]
+        }
+    },
+    "E-Mail3": {
+        "NotiDrop": {
+            "ISV_ID": "mail3.msg",
+            "category": "Malicious Code",
+            "incident": "Malware Infection",
+            "detail": "E-Mail",
+            "additionalDetails": ["E-Mail besitzt einen Anhang", "E-Mail besitzt einen Link"],
+            "attachment_Downloaded": ["downloaded", "executed"],
+            "link_Clicked": ["clicked"],
+            "criticality": "Major",
+            "freetextDetails": "Im Folgenden der Link auf den der Mitarbeiter klicken sollte:\n\n http://z00m-update.com\n\nDie Mail mit Anhang wird als .msg Datei der Meldung angehangen."
+        },
+        "MITRE": {
+            "tactics": ["TA0001", "TA0002"],
+            "techniques": ["T1566.001", "T1566.002", "T1204.001", "T1204.002"]
+        }
+    },
+    "E-Mail4": {
+        "NotiDrop": {
+            "ISV_ID": "mail4.msg",
+            "category": "Malicious Code",
+            "incident": "Malware Infection",
+            "detail": "E-Mail",
+            "additionalDetails": ["E-Mail besitzt einen Anhang"],
+            "attachment_Downloaded": ["downloaded"],
+            "link_Clicked": [],
+            "criticality": "Major",
+            "freetextDetails": "Die Mail mit der Schadsoftware wird als .msg Datei der Meldung angehangen."
+        },
+        "MITRE": {
+            "tactics": ["TA0001", "TA0002"],
+            "techniques": ["T1566.001", "T1566.002", "T1204.002"]
+        }
+    },
+    "E-Mail5": {
+        "NotiDrop": {
+            "ISV_ID": "mai5.msg",
+            "category": "Information Gathering",
+            "incident": "Social Engineering",
+            "detail": "E-Mail",
+            "additionalDetails": ["BEC-Fraud: Angreifer baut Vertrauen über E-Mail-Kommunikation auf, um manipulativ vorzugehen."],
+            "criticality": "Major",
+            "freetextDetails": ""
+        },
+        "MITRE": {
+            "tactics": ["TA0043"],
+            "techniques": ["T1598"]
+        }
+    }
+}
