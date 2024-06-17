@@ -14,15 +14,32 @@
             list-style-type: disc;
             margin-left: 20px;
         }
+        .priority-scale {
+            width: 100%;
+            height: 20px;
+            background: linear-gradient(to right, green, yellow, red);
+            position: relative;
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+        .priority-indicator {
+            width: 20px;
+            height: 20px;
+            background: black;
+            border-radius: 50%;
+            position: absolute;
+            top: -5px; /* Adjust position to center the circle */
+            transform: translateX(-50%);
+        }
     </style>
 </head>
 <body>
     <div class="container my-5">
         <div class="form-group">
-            <label for="jsonDropdown">Wählen Sie eine welche Kategorisierung Sie sehen wollen aus:</label>
+            <label for="jsonDropdown">Wählen Sie eine Kategorisierung aus:</label>
             <select class="form-control" id="jsonDropdown">
-                <option value="kategorisierung1.json">Kategorisierung durch ISB 1</option>
-                <option value="kategorisierung2.json">Kategorisierung durch ISB 2</option>
+                <option value="Kategorisierung1.json">Kategorisierung 1</option>
+                <option value="Kategorisierung2.json">Kategorisierung 2</option>
             </select>
         </div>
 
@@ -53,8 +70,6 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script>
         document.addEventListener("DOMContentLoaded", function () {
-            let emailsData = {};
-            let newEmailsData = {};
             let currentData = {};
 
             function fetchData(file) {
@@ -64,6 +79,23 @@
                         currentData = data;
                         renderEmailData(currentData);
                     });
+            }
+
+            function getPriorityPosition(priority) {
+                switch (priority) {
+                    case "Priority 1":
+                        return "100%";
+                    case "Priority 2":
+                        return "75%";
+                    case "Priority 3":
+                        return "50%";
+                    case "Priority 4":
+                        return "25%";
+                    case "Priority 5":
+                        return "0%";
+                    default:
+                        return "0%";
+                }
             }
 
             function renderEmailData(data) {
@@ -77,6 +109,8 @@
 
                     const notidrop = data[email].NotiDrop;
                     const mitre = data[email].MITRE;
+
+                    const priorityPosition = getPriorityPosition(data[email].Priority);
 
                     emailSection.innerHTML = `
                         <div class="email-title"><h3>${email}</h3></div>
@@ -95,6 +129,16 @@
                                 <p><strong>Frei Text Details:</strong> ${notidrop.freetextDetails}</p>
                             </div>
                         </div>
+                        <div class="notidrop">
+                            <h4>Cyber-Kill-Chain-Phase</h4>
+                            <p><strong>Cyber-Kill-Chain:</strong> ${data[email]["Cyber-Kill-Chain"]}</p>
+                            <h4>Priority</h4>
+                            <div class="priority-scale">
+                                <div class="priority-indicator" style="left: ${priorityPosition};"></div>
+                            </div>
+                            <p><strong>Priority Score:</strong> ${data[email]["Priority Score"]}</p>
+                            <p><strong>Priority:</strong> ${data[email].Priority}</p>
+                        </div>
                         <div class="mitre">
                             <h4>MITRE</h4>
                             <div class="details">
@@ -111,7 +155,7 @@
                 emailSections.forEach(section => section.style.display = 'none');
             }
 
-            fetchData('kategorisierung1.json');
+            fetchData('Kategorisierung1.json');
 
             document.getElementById('jsonDropdown').addEventListener('change', function () {
                 fetchData(this.value);
