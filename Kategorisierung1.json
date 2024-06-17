@@ -14,7 +14,10 @@
         "MITRE": {
             "tactics": ["TA0043"],
             "techniques": ["T1598", "T1598.003"]
-        }
+        },
+        "Cyber-Kill-Chain": "Reconnaissance",
+        "Priority Score": "15",
+        "Priority": "Priority 5"
     },
     "E-Mail2": {
         "NotiDrop": {
@@ -31,7 +34,10 @@
         "MITRE": {
             "tactics": ["TA0001", "TA0002"],
             "techniques": ["T1566", "T1566.001", "T1566.002", "T1204", "T1204.001"]
-        }
+        },
+        "Cyber-Kill-Chain": "Exploitation, Installation",
+        "Priority Score": "70",
+        "Priority": "Priority 2"
     },
     "E-Mail3": {
         "NotiDrop": {
@@ -48,7 +54,10 @@
         "MITRE": {
             "tactics": ["TA0001", "TA0002"],
             "techniques": ["T1566", "T1566.001", "T1566.002", "T1204", "T1204.001", "T1204.002"]
-        }
+        },
+        "Cyber-Kill-Chain": "Exploitation, Installation",
+        "Priority Score": "60",
+        "Priority": "Priority 3"
     },
     "E-Mail4": {
         "NotiDrop": {
@@ -65,7 +74,10 @@
         "MITRE": {
             "tactics": ["TA0043"],
             "techniques": ["T1598", "T1589.002"]
-        }
+        },
+        "Cyber-Kill-Chain": "Reconnaissance",
+        "Priority Score": "25",
+        "Priority": "Priority 5"
     },
     "E-Mail5": {
         "NotiDrop": {
@@ -82,6 +94,9 @@
         "MITRE": {
             "tactics": ["TA0043"],
             "techniques": ["T1598"]
-        }
+        },
+        "Cyber-Kill-Chain": "Reconnaissance",
+        "Priority Score": "40",
+        "Priority": "Priority 4"
     }
 }
