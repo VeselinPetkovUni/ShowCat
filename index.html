@@ -31,6 +31,12 @@
             top: -5px; /* Adjust position to center the circle */
             transform: translateX(-50%);
         }
+        .separator {
+            border: 0;
+            height: 1px;
+            background: #ccc;
+            margin: 1.5rem 0;
+        }
     </style>
 </head>
 <body>
@@ -129,6 +135,7 @@
                                 <p><strong>Frei Text Details:</strong> ${notidrop.freetextDetails}</p>
                             </div>
                         </div>
+                        <hr class="separator">
                         <div class="notidrop">
                             <h4>Cyber-Kill-Chain-Phase</h4>
                             <p><strong>Cyber-Kill-Chain:</strong> ${data[email]["Cyber-Kill-Chain"]}</p>
@@ -139,6 +146,7 @@
                             <p><strong>Priority Score:</strong> ${data[email]["Priority Score"]}</p>
                             <p><strong>Priority:</strong> ${data[email].Priority}</p>
                         </div>
+                        <hr class="separator">
                         <div class="mitre">
                             <h4>MITRE</h4>
                             <div class="details">
