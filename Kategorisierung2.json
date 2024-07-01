@@ -51,7 +51,7 @@
         },
         "MITRE": {
             "tactics": ["TA0001", "TA0002"],
-            "techniques": ["T1566.001", "T1566.002", "T1204.001", "T1204.002"]
+            "techniques": ["T1566", "T1566.001", "T1566.002", "T1204", "T1204.001", "T1204.002"]
         },
         "Cyber-Kill-Chain": "Exploitation, Installation",
         "Priority Score": "60",
@@ -71,7 +71,7 @@
         },
         "MITRE": {
             "tactics": ["TA0001", "TA0002"],
-            "techniques": ["T1566.001", "T1566.002", "T1204.002"]
+            "techniques": ["T1566", "T1566.001", "T1566.002", "T1204", "T1204.002"]
         },
         "Cyber-Kill-Chain": "Exploitation, Installation",
         "Priority Score": "60",
